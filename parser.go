@@ -49,7 +49,7 @@ func displayHelp() {
 		flag.PrintDefaults()
 		fmt.Printf("NOTE: Separate multiple ARGS by space\n")
 		fmt.Printf("Example:\nrun a python program over a write event of .csv file\n")
-		fmt.Printf("goracle -e write /home/users/folder *.csv python example.py input_argument\n")
+		fmt.Printf("goracle -e write -dir /home/users/folder -nb -pattern *.csv python example.py input_argument\n")
 		fmt.Printf("The event file name will always be passed to the last ARGS by default\n")
 	}
 }
