@@ -1,4 +1,4 @@
-package app
+package main
 
 import (
 	"errors"
@@ -20,7 +20,7 @@ func isValidevent(event string) bool {
 	return false
 }
 
-func CliParser() (CliInput, error) {
+func cliParser() (CliInput, error) {
 	if len(os.Args) < 2 {
 		return CliInput{}, errors.New("command line argument is required to do something")
 	}
@@ -39,10 +39,10 @@ func CliParser() (CliInput, error) {
 	if !eventValidation {
 		return CliInput{}, errors.New("select only between create, write, remove, rename, chmod")
 	}
-	return CliInput{Directory: *directory, Pattern: *pattern, EventType: *event, CommandArgs: cmdArguments, NonBlocking: *nonBlocking}, nil
+	return CliInput{directory: *directory, pattern: *pattern, eventType: *event, commandArgs: cmdArguments, nonBlocking: *nonBlocking}, nil
 }
 
-func DisplayHelp() {
+func displayHelp() {
 	flag.Usage = func() {
 		fmt.Printf("#### goracle ####\nA CLI app to watch a directory and doing something, powered by golang and fsnotify\n")
 		fmt.Printf("Usage: %s [options] COMMAND ARGS\nOptions:\n", os.Args[0])

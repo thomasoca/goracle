@@ -1,4 +1,4 @@
-package app
+package main
 
 import (
 	"errors"
@@ -12,11 +12,11 @@ import (
 )
 
 type CliInput struct {
-	Directory   string
-	Pattern     string
-	EventType   string
-	CommandArgs []string
-	NonBlocking bool
+	directory   string
+	pattern     string
+	eventType   string
+	commandArgs []string
+	nonBlocking bool
 }
 
 func eventTypeConverter(event string) (fsnotify.Op, error) {
@@ -45,7 +45,7 @@ func filterDirsGlob(path, pattern string) (bool, error) {
 
 func executeCommand(cliInput CliInput, fileName string) error {
 	// concat the file name to the end of the commandArgs
-	commandArgs := cliInput.CommandArgs
+	commandArgs := cliInput.commandArgs
 	commandArgs = append(commandArgs, fileName)
 
 	// parse the commandArgs into golang Command function
@@ -57,7 +57,7 @@ func executeCommand(cliInput CliInput, fileName string) error {
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = os.Stdout
 
-	if cliInput.NonBlocking {
+	if cliInput.nonBlocking {
 		if err := cmd.Start(); err != nil {
 			return err
 		}
@@ -72,7 +72,7 @@ func executeCommand(cliInput CliInput, fileName string) error {
 
 // blatantly copied from fsnotify example
 func Goracle(cliInput CliInput) {
-	eventType, err := eventTypeConverter(cliInput.EventType)
+	eventType, err := eventTypeConverter(cliInput.eventType)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -91,7 +91,7 @@ func Goracle(cliInput CliInput) {
 					return
 				}
 				fileName := event.Name
-				checkFile, err := filterDirsGlob(fileName, cliInput.Pattern)
+				checkFile, err := filterDirsGlob(fileName, cliInput.pattern)
 				if err != nil {
 					log.Fatal("Error occured: ", err)
 				}
@@ -112,7 +112,7 @@ func Goracle(cliInput CliInput) {
 		}
 	}()
 
-	err = watcher.Add(cliInput.Directory)
+	err = watcher.Add(cliInput.directory)
 	if err != nil {
 		log.Fatal(err)
 	}

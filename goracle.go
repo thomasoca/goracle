@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-
-	app "github.com/thomasoca/goracle/app"
 )
 
 func exitApp(err error) {
@@ -14,11 +12,11 @@ func exitApp(err error) {
 }
 
 func main() {
-	app.DisplayHelp()
-	input, err := app.CliParser()
+	displayHelp()
+	input, err := cliParser()
 	if err != nil {
 		exitApp(err)
 	}
 
-	app.Goracle(input)
+	Goracle(input)
 }
