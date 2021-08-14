@@ -18,5 +18,5 @@ func main() {
 		exitApp(err)
 	}
 
-	Goracle(input)
+	goracle(input)
 }

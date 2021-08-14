@@ -52,7 +52,6 @@ func executeCommand(cliInput CliInput, fileName string) error {
 	executable := commandArgs[0]
 	commandArgs = commandArgs[1:]
 	commandArgsString := strings.Join(commandArgs, " ")
-	log.Println(executable, " ", commandArgsString)
 	cmd := exec.Command(executable, commandArgsString)
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = os.Stdout
@@ -71,7 +70,7 @@ func executeCommand(cliInput CliInput, fileName string) error {
 }
 
 // blatantly copied from fsnotify example
-func Goracle(cliInput CliInput) {
+func goracle(cliInput CliInput) {
 	eventType, err := eventTypeConverter(cliInput.eventType)
 	if err != nil {
 		log.Fatal(err)
