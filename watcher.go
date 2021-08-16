@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strings"
 
 	"github.com/fsnotify/fsnotify"
 )
@@ -51,8 +50,7 @@ func executeCommand(cliInput CliInput, fileName string) error {
 	// parse the commandArgs into golang Command function
 	executable := commandArgs[0]
 	commandArgs = commandArgs[1:]
-	commandArgsString := strings.Join(commandArgs, " ")
-	cmd := exec.Command(executable, commandArgsString)
+	cmd := exec.Command(executable, commandArgs...)
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = os.Stdout
 
