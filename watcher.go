@@ -32,7 +32,7 @@ func eventTypeConverter(event string) (fsnotify.Op, error) {
 	case "chmod":
 		eventType = fsnotify.Chmod
 	default:
-		return eventType, errors.New("failed to convert event string")
+		return fsnotify.Create, errors.New("failed to convert event string")
 	}
 	return eventType, nil
 }
