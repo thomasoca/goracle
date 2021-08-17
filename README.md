@@ -1,7 +1,7 @@
 # goracle
 A CLI app to watch a directory and doing something, powered by golang and fsnotify
-## Usage [WIP]
-Work is still on progress to make it a proper CLI, but overall the usage will be:
+## Usage
+Work is still on progress to make it a proper CLI (see [To-Do](#to-do) section for more example), but overall the usage will be:
 
 ```shell
 goracle [options] COMMAND ARGS
@@ -26,7 +26,12 @@ NOTE: Separate multiple ARGS by space
 Run a python program over a write event of .csv file
 
 ```shell
-goracle -e write -dir /home/users/projects -pattern *.csv python test.py
+goracle -e write -dir /home/users/folder -nb -pattern *.csv python example.py input_argument
 ```
 
 The event file name will always be passed to the last ARGS by default
+
+## To-do
+- [ ] Write more tests to cover most of the statements
+- [ ] Create the makefile for CLI installation
+- [ ] Re-thinking about the non-blocking option
