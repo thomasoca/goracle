@@ -29,10 +29,10 @@ func cliParser() (CliInput, error) {
 	if err != nil {
 		return CliInput{}, err
 	}
-	directory := flag.String("dir", localPath, "Directory to watch, set to current working directory as default")
-	pattern := flag.String("pattern", "*", "File pattern to notify")
+	directory := flag.String("d", localPath, "Directory to watch, set to current working directory as default")
+	pattern := flag.String("p", "*", "File pattern to notify")
 	event := flag.String("e", "create", "Event to notify, select between create, write, remove, rename, chmod")
-	nonBlocking := flag.Bool("nb", false, "Set execution mode to non-blocking")
+	nonBlocking := flag.Bool("n", false, "Set execution mode to non-blocking")
 	flag.Parse()
 	cmdArguments := flag.Args()
 	eventValidation := isValidevent(*event)
@@ -49,7 +49,7 @@ func displayHelp() {
 		flag.PrintDefaults()
 		fmt.Printf("NOTE: Separate multiple ARGS by space\n")
 		fmt.Printf("Example:\nrun a python program over a write event of .csv file\n")
-		fmt.Printf("goracle -e write -dir /home/users/folder -nb -pattern *.csv python example.py input_argument\n")
+		fmt.Printf("goracle -e write -d /home/users/folder -n -p *.csv python example.py input_argument\n")
 		fmt.Printf("The event file name will always be passed to the last ARGS by default\n")
 	}
 }

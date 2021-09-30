@@ -19,13 +19,13 @@ func TestCliParser(t *testing.T) {
 		// Test with default parameter
 		{"Default parameters", CliInput{directory: localPath, pattern: "*", eventType: "create", commandArgs: []string{"echo", "hello world"}, nonBlocking: false}, false, []string{"cmd", "echo", "hello world"}},
 		// Test custom directory
-		{"Custom directory", CliInput{directory: "/home/projects", pattern: "*", eventType: "create", commandArgs: []string{"echo", "hello world"}, nonBlocking: false}, false, []string{"cmd", "--dir=/home/projects", "echo", "hello world"}},
+		{"Custom directory", CliInput{directory: "/home/projects", pattern: "*", eventType: "create", commandArgs: []string{"echo", "hello world"}, nonBlocking: false}, false, []string{"cmd", "--d=/home/projects", "echo", "hello world"}},
 		// Test custom pattern
-		{"Custom pattern", CliInput{directory: localPath, pattern: "*.txt", eventType: "create", commandArgs: []string{"echo", "hello world"}, nonBlocking: false}, false, []string{"cmd", "--pattern=*.txt", "echo", "hello world"}},
+		{"Custom pattern", CliInput{directory: localPath, pattern: "*.txt", eventType: "create", commandArgs: []string{"echo", "hello world"}, nonBlocking: false}, false, []string{"cmd", "--p=*.txt", "echo", "hello world"}},
 		// Test custom event type
 		{"Custom event", CliInput{directory: localPath, pattern: "*", eventType: "write", commandArgs: []string{"echo", "hello world"}, nonBlocking: false}, false, []string{"cmd", "--e=write", "echo", "hello world"}},
 		// Test non blocking mode
-		{"Non blocking", CliInput{directory: localPath, pattern: "*", eventType: "create", commandArgs: []string{"echo", "hello world"}, nonBlocking: true}, false, []string{"cmd", "-nb", "echo", "hello world"}},
+		{"Non blocking", CliInput{directory: localPath, pattern: "*", eventType: "create", commandArgs: []string{"echo", "hello world"}, nonBlocking: true}, false, []string{"cmd", "-n", "echo", "hello world"}},
 		// Test missing parameter
 		{"No parameters", CliInput{}, true, []string{"cmd"}},
 		// Test invalid event

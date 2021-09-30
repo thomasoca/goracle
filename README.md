@@ -10,13 +10,13 @@ goracle [options] COMMAND ARGS
 There are some options available:
 ```shell
 Options:
-  -dir string
+  -d string
         Directory to watch, set to current working directory as default (default "/home/thomasoca/projects/goracle")
   -e string
         Event to notify, select between create, write, remove, rename, chmod (default "create")
-  -nb
+  -n
         Set execution mode to non-blocking
-  -pattern string
+  -p string
         File pattern to notify (default "*")
 ```
 
@@ -26,7 +26,7 @@ NOTE: Separate multiple ARGS by space
 Run a python program over a write event of .csv file
 
 ```shell
-goracle -e write -dir /home/users/folder -nb -pattern *.csv python example.py input_argument
+goracle -e write -d /home/users/folder -n -p *.csv python example.py input_argument
 ```
 
 The event file name will always be passed to the last ARGS by default
